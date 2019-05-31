@@ -73,12 +73,8 @@
     <ul class="list-group">
        <li
        v-for="log in logs"
-       class="list-group-item"
-       :class="{
-          'list-group-item-secondary' : log.status === 'cnl'
-          'list-group-item-success' : log.status === 'ok'
-       }"
-       >{{ log.text }}</li>
+       class="list-group-item-secondary"
+              >{{ log.text }}</li>
     </ul>
   </div>
 </div>
