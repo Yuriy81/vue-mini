@@ -1,0 +1,13 @@
+.detailed-wine-image {
+  height: 200px;
+  width: 300px;
+}
+.pointer {
+  cursor: pointer;
+}
+.maker-block{
+  height: 36px;
+}
+.modal {
+  display: block;
+}
