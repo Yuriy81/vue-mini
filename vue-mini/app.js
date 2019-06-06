@@ -48,7 +48,7 @@ new Vue ({
   cancelOrder: function () {
     this.modalVisibility = false
     this.logs.push (
-      log(`Success order: ${this.wine.name} - ${this.wine.type}`, 'cnl')
+      log(`Cancelled order: ${this.wine.name} - ${this.wine.type}`, 'cnl')
     )
     }
     },
@@ -62,6 +62,11 @@ new Vue ({
         return wine.name.indexOf(self.search) > -1 || wine.type.indexOf(self.search) > -1
       })
       return filtered
+    }
+  },
+  filters: {
+    date(value) {
+      return value.toLocaleString()
     }
   }
 })
