@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="app.css">
@@ -56,8 +57,11 @@
           <li>Year - <strong>{{wine.year}}</strong></li>
           <li>Alcohol - <strong>{{wine.alcohol}}</strong></li>
         </ul>
+
         <div class="maker-block">
+          <transition>
         <p v-if="makerVisibility">{{wine.maker}}</p>
+      </transition name="maker">
         </div>
         <button class="btn btn-outline-success mr-3"
          v-on:click="makerVisibility = !makerVisibility"
@@ -68,17 +72,21 @@
   </div>
 </div>
 
-<div class="row" v-if="logs.length !== 0">
+<div class="row pt-3" v-if="logs.length !== 0">
   <div class="col-md-12">
     <ul class="list-group">
        <li
        v-for="log in logs"
-       class="list-group-item-secondary"
-              >{{ log.text }}</li>
+       class="list-group-item"
+       :class="{
+         'list-group-item-primary': log.type === 'cnl',
+         'list-group-item-success': log.type === 'ok',
+       }"
+              >{{ log.text }} {{ log.date | date }}</li>
     </ul>
   </div>
 </div>
-
+<transition name="modal">
 <div class="modal fade show" v-if="modalVisibility" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -118,7 +126,10 @@
     </div>
   </div>
 </div>
+</transition>
+<transition name="fade">
 <div class="modal-backdrop fade show"  v-if="modalVisibility"></div>
+</transition>
 
 </div>
 
